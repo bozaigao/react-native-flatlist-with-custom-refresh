@@ -1,0 +1,2 @@
+# react-native-flatlist-with-custom-refresh
+给react-native官方组件flalist组件增加自定义的下拉刷新和上拉加载组件,主要是为了解决在ScrollView和Flatlist混用的情况下,flatlist自带的RefreshControl下拉刷新组件会和ScrollView的横向滑动手势冲突而导致左右滑动不灵敏,同时在Android端在ScrollView滚动后在执行下拉刷新会导致RefreshControl卡在刷新过程中.
