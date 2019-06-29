@@ -5,9 +5,10 @@
 ### 使用方法
 flatlist官方组件的属性和方法通用，只是增加了下拉刷新组件添加了上拉加载事件而已
 ```javascript
-  import Index from 'Index';
+  //@ts-ignore
+  import FlatListWithCustomRefresh from 'react-native-flatlist-with-custom-refresh';
 
-  <Index
+  <FlatListWithCustomRefresh
                           ref={ref => (this.refFlatList = ref)}
                           onMyRefresh={() => {
                               console.log('下拉刷新--->>');
