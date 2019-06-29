@@ -6,6 +6,7 @@
 flatlist官方组件的属性和方法通用，只是增加了刷新组件添加了上拉加载事件而已
 ```javascript
   import FlatListWithCustomRefresh from 'FlatListWithCustomRefresh';
+
   <FlatListWithCustomRefresh
                           ref={ref => (this.refFlatList = ref)}
                           onMyRefresh={() => {
