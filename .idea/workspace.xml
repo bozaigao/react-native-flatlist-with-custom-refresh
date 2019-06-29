@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="99d74dd6-54e7-457b-8e71-0f168d0515c7" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlatlistWithCustomRefresh.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlatlistWithCustomRefresh.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/index.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FlatlistWithCustomRefresh.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="99d74dd6-54e7-457b-8e71-0f168d0515c7" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -23,8 +17,8 @@
       <file leaf-file-name="index.tsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="409">
-              <caret line="433" column="3" lean-forward="true" selection-start-line="433" selection-start-column="3" selection-end-line="433" selection-end-column="3" />
+            <state relative-caret-position="343">
+              <caret line="430" column="29" lean-forward="true" selection-start-line="430" selection-start-column="29" selection-end-line="430" selection-end-column="29" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#215#254#0" expanded="true" />
@@ -155,16 +149,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1561796131602</updated>
-      <workItem from="1561796132967" duration="1865000" />
+      <workItem from="1561796132967" duration="2473000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1865000" />
+    <option name="totallyTimeSpent" value="2473000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TypeScript" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24954791" />
@@ -216,8 +209,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="409">
-          <caret line="433" column="3" lean-forward="true" selection-start-line="433" selection-start-column="3" selection-end-line="433" selection-end-column="3" />
+        <state relative-caret-position="343">
+          <caret line="430" column="29" lean-forward="true" selection-start-line="430" selection-start-column="29" selection-end-line="430" selection-end-column="29" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="e#215#254#0" expanded="true" />
