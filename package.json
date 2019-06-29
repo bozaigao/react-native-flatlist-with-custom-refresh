@@ -1,0 +1,45 @@
+{
+  "name": "react-native-flatlist-with-custom-refresh",
+  "version": "1.0.0",
+  "description": "基于react-native-camera修改后的前后摄像头切换续拍组件",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bozaigao/react-native-flatlist-with-custom-refresh.git"
+  },
+  "keywords": [
+    "barcode",
+    "camera",
+    "code",
+    "native",
+    "qr",
+    "react",
+    "react-native",
+    "rncamera",
+    "video-shooting"
+  ],
+  "author": {
+    "name": "bozaigao",
+    "email": "1054539528@qq.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bozaigao/react-native-flatlist-with-custom-refresh/issues"
+  },
+  "dependencies": {
+    "@types/lodash.debounce": "4.0.3",
+    "@types/prop-types": "15.5.2",
+    "@types/react": "16.4.7",
+    "@types/react-native": "0.49.5",
+    "lodash.debounce": "4.0.8",
+    "prop-types": "15.5.8",
+    "ts-object-utils": "0.0.5"
+  },
+  "devDependencies": {
+    "@types/lodash.debounce": "4.0.3",
+    "@types/prop-types": "15.5.2",
+    "@types/react": "16.4.7",
+    "@types/react-native": "0.49.5"
+  },
+  "homepage": "https://github.com/bozaigao/react-native-flatlist-with-custom-refresh#readme"
+}
