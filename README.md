@@ -3,11 +3,11 @@
 直接执行npm install react-native-flatlist-with-custom-refresh --save
 
 ### 使用方法
-flatlist官方组件的属性和方法通用，只是增加了刷新组件添加了上拉加载事件而已
+flatlist官方组件的属性和方法通用，只是增加了下拉刷新组件添加了上拉加载事件而已
 ```javascript
-  import FlatListWithCustomRefresh from 'FlatListWithCustomRefresh';
+  import Index from 'Index';
 
-  <FlatListWithCustomRefresh
+  <Index
                           ref={ref => (this.refFlatList = ref)}
                           onMyRefresh={() => {
                               console.log('下拉刷新--->>');

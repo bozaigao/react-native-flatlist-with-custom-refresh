@@ -296,4 +296,4 @@ const styles = StyleSheet.create({
     }
 });
 export default FlatListWithCustomRefresh;
-//# sourceMappingURL=FlatlistWithCustomRefresh.js.map
+//# sourceMappingURL=index.js.map
