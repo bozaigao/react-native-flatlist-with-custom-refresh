@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Dimensions, ActivityIndicator, Animated, AsyncStorage, Easing, FlatList, Platform, ScrollView, StyleSheet, Text, View, DeviceEventEmitter } from 'react-native';
+import { Dimensions, ActivityIndicator, Animated, Easing, FlatList, ScrollView, StyleSheet, Text, View, DeviceEventEmitter } from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 const { height, width } = Dimensions.get('window');
 class FlatListWithCustomRefresh extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ class FlatListWithCustomRefresh extends Component {
             let target = e.nativeEvent;
             let y = target.contentOffset.y;
             this.dragFlag = false;
-            if (y <= this.refreshHeight && y >= 10 && Platform.OS === 'android') {
+            if (y <= this.refreshHeight && y >= 10) {
                 this._scrollViewRef.scrollTo({ x: 0, y: this.refreshHeight, animated: true });
             }
             if (this.state.prState) {
@@ -42,24 +43,14 @@ class FlatListWithCustomRefresh extends Component {
             let target = event.nativeEvent;
             let y = target.contentOffset.y;
             if (this.dragFlag) {
-                if (Platform.OS === 'ios') {
-                    if (y <= -70) {
-                        this.upState();
-                    }
-                    else {
-                        this.downState();
-                    }
+                if (y <= 10) {
+                    this.upState();
                 }
-                else if (Platform.OS === 'android') {
-                    if (y <= 10) {
-                        this.upState();
-                    }
-                    else {
-                        this.downState();
-                    }
+                else {
+                    this.downState();
                 }
             }
-            else if (y === 0 && Platform.OS === 'android') {
+            else if (y === 0) {
                 this.setState({
                     prTitle: '正在刷新数据中..',
                     prLoading: true,
@@ -89,7 +80,7 @@ class FlatListWithCustomRefresh extends Component {
         this.initScrollViewRefresh = DeviceEventEmitter.addListener('initScrollViewRefresh', () => {
             this.onRefreshEnd();
         });
-        if (Platform.OS === 'android' && this.props.onMyRefresh) {
+        if (this.props.onMyRefresh) {
             this.setState({
                 prTitle: '正在刷新数据中..',
                 prLoading: true,
@@ -107,12 +98,10 @@ class FlatListWithCustomRefresh extends Component {
     }
     renderIndicatorContent() {
         let jsx = [this.renderRefreshContent()];
-        return (<View style={Platform.OS === 'ios' ?
-            styles.pullRefresh :
-            {
-                width,
-                height: this.refreshHeight
-            }}>
+        return (<View style={{
+            width,
+            height: this.refreshHeight
+        }}>
                 {jsx.map((item, index) => {
             return <View key={index}>{item}</View>;
         })}
@@ -174,12 +163,7 @@ class FlatListWithCustomRefresh extends Component {
             prTimeDisplay: dateFormat(now, 'yyyy-MM-dd hh:mm')
         });
         AsyncStorage.setItem(this.prStoryKey, now.toString());
-        if (Platform.OS === 'ios') {
-            this._scrollViewRef.scrollTo({ x: 0, y: 0, animated: true });
-        }
-        else if (Platform.OS === 'android') {
-            this._scrollViewRef.scrollTo({ x: 0, y: this.refreshHeight, animated: true });
-        }
+        this._scrollViewRef.scrollTo({ x: 0, y: this.refreshHeight, animated: true });
     }
     upState() {
         this.setState({
@@ -228,9 +212,9 @@ class FlatListWithCustomRefresh extends Component {
                     {<FlatList {...this.props} onEndReached={() => {
         }}/>}
                 </View>
-                {Platform.OS === 'android' ? (<View ref={ref => {
+                <View ref={ref => {
             this.viewRef = ref;
-        }} style={{ width: '100%' }}/>) : null}
+        }} style={{ width: '100%' }}/>
             </ScrollView>);
     }
 }

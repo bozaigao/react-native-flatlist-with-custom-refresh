@@ -11,16 +11,16 @@ import {
     Dimensions,
     ActivityIndicator,
     Animated,
-    AsyncStorage,
     Easing,
     FlatList,
-    Platform,
     ScrollView,
     StyleSheet,
     Text,
     View,
     DeviceEventEmitter
 } from 'react-native';
+//@ts-ignore
+import AsyncStorage from '@react-native-community/async-storage';
 
 const {height, width} = Dimensions.get('window');
 
@@ -75,7 +75,7 @@ class FlatListWithCustomRefresh extends Component<Props, State> {
         this.initScrollViewRefresh = DeviceEventEmitter.addListener('initScrollViewRefresh', () => {
             this.onRefreshEnd();
         });
-        if (Platform.OS === 'android' && this.props.onMyRefresh) {
+        if (this.props.onMyRefresh) {
             this.setState({
                 prTitle: '正在刷新数据中..',
                 prLoading: true,
@@ -99,12 +99,10 @@ class FlatListWithCustomRefresh extends Component<Props, State> {
         return (
             <View
                 style={
-                    Platform.OS === 'ios' ?
-                        styles.pullRefresh :
-                        {
-                            width,
-                            height: this.refreshHeight
-                        }
+                    {
+                        width,
+                        height: this.refreshHeight
+                    }
                 }
             >
                 {jsx.map((item, index) => {
@@ -185,7 +183,7 @@ class FlatListWithCustomRefresh extends Component<Props, State> {
         let y = target.contentOffset.y;
 
         this.dragFlag = false;
-        if (y <= this.refreshHeight && y >= 10 && Platform.OS === 'android') {
+        if (y <= this.refreshHeight && y >= 10) {
             this._scrollViewRef.scrollTo({x: 0, y: this.refreshHeight, animated: true});
         }
         if (this.state.prState) {
@@ -238,22 +236,14 @@ class FlatListWithCustomRefresh extends Component<Props, State> {
         let y = target.contentOffset.y;
 
         if (this.dragFlag) {
-            if (Platform.OS === 'ios') {
-                if (y <= -70) {
-                    this.upState();
-                } else {
-                    this.downState();
-                }
-            } else if (Platform.OS === 'android') {
-                if (y <= 10) {
-                    this.upState();
-                } else {
-                    this.downState();
-                }
+            if (y <= 10) {
+                this.upState();
+            } else {
+                this.downState();
             }
         }
         //解决Android用户端迅速拉动列表手指放开的一瞬间列表还在滚动
-        else if (y === 0 && Platform.OS === 'android') {
+        else if (y === 0) {
             this.setState({
                 prTitle: '正在刷新数据中..',
                 prLoading: true,
@@ -280,11 +270,7 @@ class FlatListWithCustomRefresh extends Component<Props, State> {
         });
         // 存一下刷新时间
         AsyncStorage.setItem(this.prStoryKey, now.toString());
-        if (Platform.OS === 'ios') {
-            this._scrollViewRef.scrollTo({x: 0, y: 0, animated: true});
-        } else if (Platform.OS === 'android') {
-            this._scrollViewRef.scrollTo({x: 0, y: this.refreshHeight, animated: true});
-        }
+        this._scrollViewRef.scrollTo({x: 0, y: this.refreshHeight, animated: true});
     }
 
     // 高于临界值状态
@@ -353,15 +339,12 @@ class FlatListWithCustomRefresh extends Component<Props, State> {
                         }}/>
                     }
                 </View>
-                {//如果是Android端则增加一点空白，因为Android ScrollView没有bounce属性，这样才可以进行下拉刷新
-                    Platform.OS === 'android' ? (
-                        <View
-                            ref={ref => {
-                                this.viewRef = ref;
-                            }}
-                            style={{width: '100%'}}
-                        />
-                    ) : null}
+                <View
+                    ref={ref => {
+                        this.viewRef = ref;
+                    }}
+                    style={{width: '100%'}}
+                />
             </ScrollView>
         );
     }
