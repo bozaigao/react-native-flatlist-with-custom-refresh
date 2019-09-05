@@ -37,6 +37,7 @@ interface State {
     prTimeDisplay: string;
     prState: number;
     beginScroll: boolean;
+    showLoadIndicator: boolean;
 }
 
 class FlatListWithCustomRefresh extends Component<Props, State> {
@@ -59,6 +60,7 @@ class FlatListWithCustomRefresh extends Component<Props, State> {
         this.refreshHeight = 60;
         this.prStoryKey = 'prtimekey';
         this.state = {
+            showLoadIndicator: false,
             prArrowDeg: new Animated.Value(0),
             prLoading: false,
             prTitle: '下拉可以刷新',
@@ -300,7 +302,20 @@ class FlatListWithCustomRefresh extends Component<Props, State> {
         }).start();
     }
 
+
+    showLoading() {
+        console.log('显示加载进度');
+        this.setState({showLoadIndicator: true});
+    }
+
+    hideLoading() {
+        console.log('隐藏加载进度');
+        this.setState({showLoadIndicator: false});
+    }
+
     render() {
+        let {showLoadIndicator} = this.state;
+
         return (
             <ScrollView
                 ref={(scrollView: any) => {
@@ -335,8 +350,33 @@ class FlatListWithCustomRefresh extends Component<Props, State> {
                 }}>
                     {
                         //@ts-ignore
-                        <FlatList {...this.props} onEndReached={() => {
-                        }}/>
+                        <FlatList {...this.props}
+                                  onEndReached={() => {
+                                  }}
+                        />
+                    }
+                    {
+                        showLoadIndicator ? <View
+                                //@ts-ignore
+                                style={{
+                                    width: '100%',
+                                    height: 30,
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    backgroundColor: '#f6f9fc'
+                                }}>
+                                {
+                                    //@ts-ignore
+                                    <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                        <ActivityIndicator style={{
+                                            width: 16,
+                                            height: 16
+                                        }} color={'gray'}/>
+                                        <Text style={{marginLeft: 10, color: 'gray'}}>数据加载中...</Text>
+                                    </View>
+                                }
+                            </View> :
+                            null
                     }
                 </View>
                 <View

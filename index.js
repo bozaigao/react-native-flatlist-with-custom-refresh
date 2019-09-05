@@ -65,6 +65,7 @@ class FlatListWithCustomRefresh extends Component {
         this.refreshHeight = 60;
         this.prStoryKey = 'prtimekey';
         this.state = {
+            showLoadIndicator: false,
             prArrowDeg: new Animated.Value(0),
             prLoading: false,
             prTitle: '下拉可以刷新',
@@ -187,7 +188,16 @@ class FlatListWithCustomRefresh extends Component {
             easing: Easing.inOut(Easing.quad)
         }).start();
     }
+    showLoading() {
+        console.log('显示加载进度');
+        this.setState({ showLoadIndicator: true });
+    }
+    hideLoading() {
+        console.log('隐藏加载进度');
+        this.setState({ showLoadIndicator: false });
+    }
     render() {
+        let { showLoadIndicator } = this.state;
         return (<ScrollView ref={(scrollView) => {
             this._scrollViewRef = scrollView;
             return this._scrollViewRef;
@@ -211,6 +221,22 @@ class FlatListWithCustomRefresh extends Component {
         }}>
                     {<FlatList {...this.props} onEndReached={() => {
         }}/>}
+                    {showLoadIndicator ? <View style={{
+            width: '100%',
+            height: 30,
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#f6f9fc'
+        }}>
+                                {<View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                        <ActivityIndicator style={{
+            width: 16,
+            height: 16
+        }} color={'gray'}/>
+                                        <Text style={{ marginLeft: 10, color: 'gray' }}>数据加载中...</Text>
+                                    </View>}
+                            </View> :
+            null}
                 </View>
                 <View ref={ref => {
             this.viewRef = ref;
